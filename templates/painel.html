@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Painel Cortesias</title>
+</head>
+<body>
+    <h2>Bem-vindo ao Painel de Cortesias</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <p><strong>Cliente:</strong> <input type="text" name="cliente"></p>
+        <p><strong>Vendedor:</strong> <input type="text" name="vendedor"></p>
+        <p><strong>Carro:</strong> <input type="text" name="carro"></p>
+        <p><strong>IPVA:</strong> 
+            <select name="ipva_tipo">
+                <option value="Cortesia">Cortesia</option>
+                <option value="Cliente">Por conta do cliente</option>
+            </select>
+            <input type="text" name="ipva_valor" placeholder="Valor">
+        </p>
+        <p><strong>Emplacamento:</strong> 
+            <select name="emplacamento_tipo">
+                <option value="Cortesia">Cortesia</option>
+                <option value="Cliente">Por conta do cliente</option>
+            </select>
+            <input type="text" name="emplacamento_valor" placeholder="Valor">
+        </p>
+        <p><strong>Data de Faturamento:</strong> <input type="date" name="data_faturamento"></p>
+        <p><strong>Anexar Proposta (PDF):</strong> <input type="file" name="arquivo"></p>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <h3>Propostas Cadastradas:</h3>
+    <table border="1">
+        <tr>
+            <th>Cliente</th><th>Vendedor</th><th>Carro</th><th>IPVA</th><th>Emplacamento</th><th>Data Faturamento</th>
+        </tr>
+        {% for p in propostas %}
+        <tr>
+            <td>{{ p.cliente }}</td><td>{{ p.vendedor }}</td><td>{{ p.carro }}</td>
+            <td>{{ p.ipva_tipo }} - {{ p.ipva_valor }}</td>
+            <td>{{ p.emplacamento_tipo }} - {{ p.emplacamento_valor }}</td>
+            <td>{{ p.data_faturamento }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br><a href="/logout">Sair</a>
+</body>
+</html>
